@@ -2,9 +2,9 @@ import Bin from 'bin';
 import CodeMirror from 'codemirror';
 import config from 'editor-config';
 
-import 'npm:codemirror@5.4.0/mode/javascript/javascript';
-import 'npm:codemirror@5.4.0/mode/css/css';
-import 'npm:codemirror@5.4.0/mode/htmlmixed/htmlmixed';
+import 'codemirror/mode/javascript/javascript';
+import 'codemirror/mode/css/css';
+import 'codemirror/mode/htmlmixed/htmlmixed';
 
 var KEY_JS = 'edit-js-value';
 var KEY_HTML = 'edit-html-value';
