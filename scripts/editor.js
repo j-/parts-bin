@@ -1,25 +1,35 @@
-/* global ace */
-
 import bin from 'bin';
+import CodeMirror from 'codemirror';
+import config from 'editor-config';
+
+import 'npm:codemirror@5.4.0/mode/javascript/javascript';
+import 'npm:codemirror@5.4.0/mode/css/css';
+import 'npm:codemirror@5.4.0/mode/htmlmixed/htmlmixed';
 
 var KEY_JS = 'edit-js-value';
 var KEY_HTML = 'edit-html-value';
 var KEY_CSS = 'edit-css-value';
 
-var editJS = ace.edit('edit-js');
-editJS.getSession().setMode('ace/mode/javascript');
-editJS.setValue(localStorage.getItem(KEY_JS) || '');
-editJS.selection.clearSelection();
+var common = Object.assign({
+	extraKeys: {
+		'Ctrl-Enter': execute
+	}
+}, config);
 
-var editHTML = ace.edit('edit-html');
-editHTML.getSession().setMode('ace/mode/html');
-editHTML.setValue(localStorage.getItem(KEY_HTML) || '');
-editHTML.selection.clearSelection();
+var editJS = CodeMirror(document.getElementById('edit-js'), Object.assign({
+	value: localStorage.getItem(KEY_JS) || '',
+	mode: 'javascript'
+}, common));
 
-var editCSS = ace.edit('edit-css');
-editCSS.getSession().setMode('ace/mode/css');
-editCSS.setValue(localStorage.getItem(KEY_CSS) || '');
-editCSS.selection.clearSelection();
+var editHTML = CodeMirror(document.getElementById('edit-html'), Object.assign({
+	value: localStorage.getItem(KEY_HTML) || '',
+	mode: 'htmlmixed'
+}, common));
+
+var editCSS = CodeMirror(document.getElementById('edit-css'), Object.assign({
+	value: localStorage.getItem(KEY_CSS) || '',
+	mode: 'css'
+}, common));
 
 function execute () {
 	var js = editJS.getValue();
@@ -35,19 +45,5 @@ function execute () {
 		setTimeout(bin.loadJavaScript, 0, js);
 	});
 }
-
-var config = {
-	name: 'execute',
-	bindKey: {
-		win: 'Ctrl-Enter',
-		mac: 'Command-Enter'
-	},
-	exec: execute,
-	readOnly: false
-};
-
-editJS.commands.addCommand(config);
-editHTML.commands.addCommand(config);
-editCSS.commands.addCommand(config);
 
 execute();

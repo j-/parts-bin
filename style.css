@@ -1,4 +1,9 @@
-.editor {
+.editor,
+iframe {
+	display: block;
+	float: left;
 	width: 400px;
 	height: 300px;
+	border: 1px inset #ccc;
+	margin: 10px;
 }
