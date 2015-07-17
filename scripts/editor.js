@@ -14,7 +14,8 @@ var bin = new Bin('#bin');
 
 var common = Object.assign({
 	extraKeys: {
-		'Ctrl-Enter': execute
+		'Ctrl-Enter': execute,
+		'F5': execute,
 	}
 }, config);
 
