@@ -50,7 +50,7 @@ function execute () {
 		bin.injectHTML(html);
 		bin.injectCSS(css);
 		// Execute in next loop to clear call stack
-		setTimeout(bin.injectJS.bind(bin), 0, js);
+		setTimeout(() => bin.injectJS(js), 0);
 	});
 }
 
