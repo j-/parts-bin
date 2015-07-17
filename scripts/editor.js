@@ -1,4 +1,4 @@
-import bin from 'bin';
+import Bin from 'bin';
 import CodeMirror from 'codemirror';
 import config from 'editor-config';
 
@@ -9,6 +9,8 @@ import 'npm:codemirror@5.4.0/mode/htmlmixed/htmlmixed';
 var KEY_JS = 'edit-js-value';
 var KEY_HTML = 'edit-html-value';
 var KEY_CSS = 'edit-css-value';
+
+var bin = new Bin('#bin');
 
 var common = Object.assign({
 	extraKeys: {
@@ -38,11 +40,12 @@ function execute () {
 	localStorage.setItem(KEY_JS, js);
 	localStorage.setItem(KEY_HTML, html);
 	localStorage.setItem(KEY_CSS, css);
-	bin.reload(function () {
-		bin.loadHTML(html);
-		bin.loadCSS(css);
+	bin.reset();
+	bin.ready(function () {
+		bin.injectHTML(html);
+		bin.injectCSS(css);
 		// Execute in next loop to clear call stack
-		setTimeout(bin.loadJavaScript, 0, js);
+		setTimeout(bin.injectJS.bind(bin), 0, js);
 	});
 }
 
