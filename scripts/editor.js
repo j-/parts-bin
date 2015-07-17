@@ -20,20 +20,23 @@ var common = Object.assign({
 	}
 }, config);
 
-var editJS = CodeMirror(document.getElementById('edit-js'), Object.assign({
+var configJS = Object.assign({
 	value: localStorage.getItem(KEY_JS) || '',
-	mode: 'javascript'
-}, common));
+	mode: 'javascript',
+}, common);
+var editJS = CodeMirror(document.getElementById('edit-js'), configJS);
 
-var editHTML = CodeMirror(document.getElementById('edit-html'), Object.assign({
+var configHTML = Object.assign({
 	value: localStorage.getItem(KEY_HTML) || '',
-	mode: 'htmlmixed'
-}, common));
+	mode: 'htmlmixed',
+}, common);
+var editHTML = CodeMirror(document.getElementById('edit-html'), configHTML);
 
-var editCSS = CodeMirror(document.getElementById('edit-css'), Object.assign({
+var configCSS = Object.assign({
 	value: localStorage.getItem(KEY_CSS) || '',
-	mode: 'css'
-}, common));
+	mode: 'css',
+}, common);
+var editCSS = CodeMirror(document.getElementById('edit-css'), configCSS);
 
 function execute () {
 	var js = editJS.getValue();
