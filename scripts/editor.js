@@ -1,8 +1,6 @@
-(function () {
+/* global ace */
 
-/* global ace, bin */
-
-'use strict';
+import bin from 'bin';
 
 var KEY_JS = 'edit-js-value';
 var KEY_HTML = 'edit-html-value';
@@ -53,5 +51,3 @@ editHTML.commands.addCommand(config);
 editCSS.commands.addCommand(config);
 
 execute();
-
-})();

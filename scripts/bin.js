@@ -1,7 +1,3 @@
-(function (root) {
-
-'use strict';
-
 var bin = {};
 
 bin.frame = document.getElementById('bin');
@@ -49,6 +45,4 @@ bin.loadJavaScript = function loadJavaScript (content) {
 	bin.window.document.head.appendChild(script);
 };
 
-root.bin = bin;
-
-})(this);
+export default bin;
