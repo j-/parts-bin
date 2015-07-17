@@ -10,17 +10,17 @@ var KEY_CSS = 'edit-css-value';
 
 var editJS = ace.edit('edit-js');
 editJS.getSession().setMode('ace/mode/javascript');
-editJS.setValue(localStorage.getItem(KEY_JS));
+editJS.setValue(localStorage.getItem(KEY_JS) || '');
 editJS.selection.clearSelection();
 
 var editHTML = ace.edit('edit-html');
 editHTML.getSession().setMode('ace/mode/html');
-editHTML.setValue(localStorage.getItem(KEY_HTML));
+editHTML.setValue(localStorage.getItem(KEY_HTML) || '');
 editHTML.selection.clearSelection();
 
 var editCSS = ace.edit('edit-css');
 editCSS.getSession().setMode('ace/mode/css');
-editCSS.setValue(localStorage.getItem(KEY_CSS));
+editCSS.setValue(localStorage.getItem(KEY_CSS) || '');
 editCSS.selection.clearSelection();
 
 function execute () {
