@@ -1,4 +1,4 @@
-import Bin from 'bin';
+import Output from 'output';
 import CodeMirror from 'codemirror';
 import config from 'editor-config';
 
@@ -10,7 +10,7 @@ var KEY_JS = 'edit-js-value';
 var KEY_HTML = 'edit-html-value';
 var KEY_CSS = 'edit-css-value';
 
-var bin = new Bin('#bin');
+var output = new Output('#output');
 
 var common = Object.assign({
 	extraKeys: {
@@ -45,12 +45,12 @@ function execute () {
 	localStorage.setItem(KEY_JS, js);
 	localStorage.setItem(KEY_HTML, html);
 	localStorage.setItem(KEY_CSS, css);
-	bin.reset();
-	bin.ready(function () {
-		bin.injectHTML(html);
-		bin.injectCSS(css);
+	output.reset();
+	output.ready(function () {
+		output.injectHTML(html);
+		output.injectCSS(css);
 		// Execute in next loop to clear call stack
-		setTimeout(() => bin.injectJS(js), 0);
+		setTimeout(() => output.injectJS(js), 0);
 	});
 }
 

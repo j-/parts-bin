@@ -2,7 +2,7 @@ const FRAME = Symbol('frame');
 const BLANK = 'about:blank';
 const READY_LOOP_INTERVAL = 10;
 
-class Bin {
+class Output {
 	constructor (element) {
 		this.frame = element || document.createElement('iframe');
 	}
@@ -94,4 +94,4 @@ class Bin {
 	}
 };
 
-export default Bin;
+export default Output;
