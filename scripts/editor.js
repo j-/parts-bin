@@ -1,4 +1,4 @@
-import Output from 'output';
+import Output from 'classes/output';
 import CodeMirror from 'codemirror';
 import config from 'editor-config';
 
