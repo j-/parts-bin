@@ -36,7 +36,7 @@ class Output {
 	}
 
 	reset () {
-		this.frame.src = BLANK;
+		this[FRAME].src = BLANK;
 	}
 
 	ready (callback) {

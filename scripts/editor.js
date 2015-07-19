@@ -1,6 +1,8 @@
-import Output from 'classes/output';
-import CodeMirror from 'codemirror';
-import config from 'editor-config';
+import Bin from 'classes/Bin';
+import Output from 'classes/Output';
+import FileSource from 'classes/sources/FileSource';
+import JSInjector from 'classes/injectors/JSInjector';
+import EditorView from 'classes/views/EditorView';
 
 import 'codemirror/mode/javascript/javascript';
 import 'codemirror/mode/css/css';
@@ -11,47 +13,47 @@ var KEY_HTML = 'edit-html-value';
 var KEY_CSS = 'edit-css-value';
 
 var output = new Output('#output');
+var bin = new Bin(output);
 
-var common = Object.assign({
-	extraKeys: {
-		'Ctrl-Enter': execute,
-		'Ctrl-R': execute,
-		'F5': execute,
-	}
-}, config);
-
-var configJS = Object.assign({
-	value: localStorage.getItem(KEY_JS) || '',
-	mode: 'javascript',
-}, common);
-var editJS = CodeMirror(document.getElementById('edit-js'), configJS);
-
-var configHTML = Object.assign({
-	value: localStorage.getItem(KEY_HTML) || '',
+var htmlEditorView = new EditorView({
+	element: '#edit-html',
 	mode: 'htmlmixed',
-}, common);
-var editHTML = CodeMirror(document.getElementById('edit-html'), configHTML);
+	storageKey: KEY_HTML,
+});
 
-var configCSS = Object.assign({
-	value: localStorage.getItem(KEY_CSS) || '',
+bin.registerSource(htmlEditorView.source);
+
+var jsEditorView = new EditorView({
+	element: '#edit-js',
+	mode: 'javascript',
+	storageKey: KEY_JS,
+});
+
+bin.registerSource(jsEditorView.source);
+
+var cssEditorView = new EditorView({
+	element: '#edit-css',
 	mode: 'css',
-}, common);
-var editCSS = CodeMirror(document.getElementById('edit-css'), configCSS);
+	storageKey: KEY_CSS,
+});
 
-function execute () {
-	var js = editJS.getValue();
-	var html = editHTML.getValue();
-	var css = editCSS.getValue();
-	localStorage.setItem(KEY_JS, js);
-	localStorage.setItem(KEY_HTML, html);
-	localStorage.setItem(KEY_CSS, css);
-	output.reset();
-	output.ready(function () {
-		output.injectHTML(html);
-		output.injectCSS(css);
-		// Execute in next loop to clear call stack
-		setTimeout(() => output.injectJS(js), 0);
-	});
-}
+bin.registerSource(cssEditorView.source);
 
-execute();
+document.addEventListener('dragover', function (e) {
+	e.preventDefault();
+});
+
+document.addEventListener('drop', function (e) {
+	var files = Array.from(e.dataTransfer.files);
+	if (files.length) {
+		e.preventDefault();
+		files.forEach(function (file) {
+			var source = new FileSource(file);
+			source.injector = new JSInjector();
+			bin.registerSource(source);
+			bin.resetOutput();
+		});
+	}
+});
+
+bin.resetOutput();

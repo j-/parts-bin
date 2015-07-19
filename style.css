@@ -1,6 +1,14 @@
+.panel {
+	display: inline-block;
+}
+
+.panel-label {
+	display: block;
+}
+
 .editor,
 iframe {
-	display: block;
+	display: inline-block;
 	float: left;
 	width: 400px;
 	height: 300px;
