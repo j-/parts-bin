@@ -2,6 +2,7 @@ import Bin from 'classes/Bin';
 import Output from 'classes/Output';
 import FileSource from 'classes/sources/FileSource';
 import JSInjector from 'classes/injectors/JSInjector';
+import BabelTransformer from 'classes/transformers/BabelTransformer';
 import EditorView from 'classes/views/EditorView';
 
 import 'codemirror/mode/javascript/javascript';
@@ -50,6 +51,7 @@ document.addEventListener('drop', function (e) {
 		files.forEach(function (file) {
 			var source = new FileSource(file);
 			source.injector = new JSInjector();
+			source.transformer = new BabelTransformer();
 			bin.registerSource(source);
 			bin.resetOutput();
 		});
