@@ -2,10 +2,10 @@ import Emitter from 'classes/Emitter';
 import NotImplementedError from 'classes/errors/NotImplementedError';
 
 class Source extends Emitter {
-	addTo (output) {
+	addTo (bin) {
 		return Promise.resolve(this.getValue())
 			.then((value) => this.transform(value))
-			.then((input) => this.injector.inject(input, output));
+			.then((input) => this.injector.setup(bin, input));
 	}
 
 	getValue () {

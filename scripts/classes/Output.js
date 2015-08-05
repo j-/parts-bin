@@ -36,7 +36,7 @@ class Output {
 	}
 
 	reset () {
-		this[FRAME].src = BLANK;
+		this.frame.src = BLANK;
 	}
 
 	ready (callback) {
@@ -54,43 +54,6 @@ class Output {
 			setTimeout(loop, READY_LOOP_INTERVAL);
 		}
 		loop();
-	}
-
-	injectHTML (content) {
-		// Create temporary parent container
-		var temp = document.createElement('div');
-		temp.innerHTML = content;
-		var children = temp.childNodes;
-		var frag = document.createDocumentFragment();
-		while (children.length) {
-			frag.appendChild(children[0]);
-		}
-		this.body.appendChild(frag);
-	}
-
-	injectJS (content) {
-		var script = document.createElement('script');
-		script.innerHTML = content;
-		this.head.appendChild(script);
-	}
-
-	injectCSS (content) {
-		var style = document.createElement('style');
-		style.innerHTML = content;
-		this.head.appendChild(style);
-	}
-
-	linkJS (content) {
-		var script = document.createElement('script');
-		script.src = content;
-		this.head.appendChild(script);
-	}
-
-	linkCSS (content) {
-		var link = document.createElement('link');
-		link.rel = 'stylesheet';
-		link.href = content;
-		this.head.appendChild(link);
 	}
 };
 

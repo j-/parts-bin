@@ -1,7 +1,7 @@
 import Injector from 'classes/injectors/Injector';
 
 class ScriptInjector extends Injector {
-	inject (input, output) {
+	setup (bin, input) {
 		var script = document.createElement('script');
 		script.src = input;
 		output.head.appendChild(script);

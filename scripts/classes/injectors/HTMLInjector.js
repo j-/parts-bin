@@ -1,7 +1,7 @@
 import Injector from 'classes/injectors/Injector';
 
 class HTMLInjector extends Injector {
-	inject (input, output) {
+	setup (bin, input) {
 		// Create temporary parent container
 		var temp = document.createElement('div');
 		temp.innerHTML = input;
@@ -10,7 +10,7 @@ class HTMLInjector extends Injector {
 		while (children.length) {
 			frag.appendChild(children[0]);
 		}
-		output.body.appendChild(frag);
+		bin.output.body.appendChild(frag);
 	}
 }
 

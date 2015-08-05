@@ -1,10 +1,15 @@
 import Injector from 'classes/injectors/Injector';
 
 class CSSInjector extends Injector {
-	inject (input, output) {
-		var style = document.createElement('style');
+	setup (bin, input) {
+		var style = this.style || (this.style = document.createElement('style'));
 		style.innerHTML = input;
-		output.head.appendChild(style);
+		bin.output.head.appendChild(style);
+	}
+
+	teardown (bin) {
+		bin.output.head.removeChild(this.style);
+		return true;
 	}
 }
 

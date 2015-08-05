@@ -8,7 +8,7 @@ class Bin {
 
 	registerSource (source) {
 		this.sources.push(source);
-		source.on('change', () => this.resetOutput());
+		source.on('change', () => this.handleSourceChange(source));
 	}
 
 	unregisterSource (source) {
@@ -27,7 +27,14 @@ class Bin {
 	}
 
 	addSource (source) {
-		source.addTo(this.output);
+		source.addTo(this);
+	}
+
+	handleSourceChange (source) {
+		let requiresSetup = source.injector.teardown(this);
+		if (requiresSetup) {
+			this.addSource(source);
+		}
 	}
 
 	resetOutput () {

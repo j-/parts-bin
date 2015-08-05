@@ -1,10 +1,10 @@
 import Injector from 'classes/injectors/Injector';
 
 class JSInjector extends Injector {
-	inject (input, output) {
+	setup (bin, input) {
 		var script = document.createElement('script');
 		script.innerHTML = input;
-		output.head.appendChild(script);
+		bin.output.head.appendChild(script);
 	}
 }
 
