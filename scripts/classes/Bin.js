@@ -1,4 +1,4 @@
-import Output from 'classes/Output';
+import Output from 'classes/outputs/Output';
 
 class Bin {
 	constructor (output) {

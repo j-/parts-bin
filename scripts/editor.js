@@ -1,5 +1,5 @@
 import Bin from 'classes/Bin';
-import Output from 'classes/Output';
+import FrameOutput from 'classes/outputs/FrameOutput';
 import FileSource from 'classes/sources/FileSource';
 import JSInjector from 'classes/injectors/JSInjector';
 import BabelTransformer from 'classes/transformers/BabelTransformer';
@@ -13,7 +13,7 @@ var KEY_JS = 'edit-js-value';
 var KEY_HTML = 'edit-html-value';
 var KEY_CSS = 'edit-css-value';
 
-var output = new Output('#output');
+var output = new FrameOutput('#output');
 var bin = new Bin(output);
 
 var htmlEditorView = new EditorView({
