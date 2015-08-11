@@ -20,4 +20,5 @@ button.addEventListener('click', function () {
 	var bin = new Bin(out);
 	bin.registerSource(testSource);
 	bin.resetOutput();
+	window.addEventListener('beforeunload', () => win.close());
 });
