@@ -25,18 +25,17 @@ class Output {
 
 	ready (callback) {
 		callback = (typeof callback === 'function') ? callback : () => {};
-		let context = this;
-		function loop () {
+		const loop = () => {
 			try {
 				// Both head and body elements must be present
-				if (context.head && context.body) {
+				if (this.head && this.body) {
 					callback();
 					return;
 				}
 			}
 			catch (no_op) {}
 			setTimeout(loop, READY_LOOP_INTERVAL);
-		}
+		};
 		loop();
 	}
 }
