@@ -16,7 +16,7 @@ class Emitter {
 	once (event, listener) {
 		const callback = (...args) => {
 			this.off(event, callback);
-			listener.call(this, ...args);
+			Reflect.apply(listener, this, args);
 		};
 		callback.listener = listener;
 		this.on(event, callback);
@@ -47,7 +47,7 @@ class Emitter {
 
 	removeAllListeners (event) {
 		if (event) {
-			delete this[EVENTS][event];
+			Reflect.deleteProperty(this[EVENTS], event);
 		}
 		else {
 			this[EVENTS] = {};
@@ -60,7 +60,7 @@ class Emitter {
 		if (!listeners) {
 			return this;
 		}
-		listeners.forEach((listener) => listener.call(this, ...args));
+		listeners.forEach((listener) => Reflect.apply(listener, this, args));
 		return this;
 	}
 }
