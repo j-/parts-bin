@@ -42,12 +42,12 @@ class EditorView extends View {
 		return localStorage.getItem(this.storageKey) || '';
 	}
 
-	updateSorageValue () {
+	updateStorageValue () {
 		localStorage.setItem(this.storageKey, this.editor.getValue() || '');
 	}
 
 	triggerChange () {
-		this.updateSorageValue();
+		this.updateStorageValue();
 		this.source.triggerChange();
 	}
 
