@@ -7,6 +7,6 @@ class BabelTransformer extends Transformer {
 		var output = result.code;
 		return output;
 	}
-};
+}
 
 export default BabelTransformer;

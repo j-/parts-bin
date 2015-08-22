@@ -40,6 +40,6 @@ class FrameOutput extends Output {
 	reset () {
 		this.frame.src = BLANK;
 	}
-};
+}
 
 export default FrameOutput;

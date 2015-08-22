@@ -32,6 +32,6 @@ class WindowOutput extends Output {
 	reset () {
 		this.window.location = BLANK;
 	}
-};
+}
 
 export default WindowOutput;

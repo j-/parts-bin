@@ -39,6 +39,6 @@ class Output {
 		}
 		loop();
 	}
-};
+}
 
 export default Output;
