@@ -29,7 +29,15 @@ class Bin {
 	}
 
 	addAllSources () {
-		this.sources.forEach((source) => this.addSource(source));
+		return new Promise((accept, reject) => {
+			let chain = Promise.resolve();
+			this.sources.forEach((source) => {
+				chain = chain
+					.then(() => this.addSource(source))
+					.catch(reject);
+			});
+			chain.then(accept);
+		});
 	}
 
 	addSource (source) {
