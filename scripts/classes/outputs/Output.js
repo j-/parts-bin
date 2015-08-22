@@ -33,7 +33,9 @@ class Output {
 					return;
 				}
 			}
-			catch (no_op) {}
+			catch (err) {
+				// No-op
+			}
 			setTimeout(loop, READY_LOOP_INTERVAL);
 		};
 		loop();
