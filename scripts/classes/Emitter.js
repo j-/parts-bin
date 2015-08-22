@@ -24,7 +24,7 @@ class Emitter {
 	}
 
 	off (event, listener) {
-		let listeners = this[EVENTS][event];
+		const listeners = this[EVENTS][event];
 		if (!listeners) {
 			return this;
 		}
@@ -33,7 +33,7 @@ class Emitter {
 			return this;
 		}
 		for (let i = 0; i < listeners.length; i++) {
-			let current = listeners[i];
+			const current = listeners[i];
 			if (current === listener || current.listener === listener) {
 				listeners.splice(i, 1);
 				i--;
@@ -56,7 +56,7 @@ class Emitter {
 	}
 
 	emit (event, ...args) {
-		let listeners = this[EVENTS][event];
+		const listeners = this[EVENTS][event];
 		if (!listeners) {
 			return this;
 		}

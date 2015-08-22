@@ -9,14 +9,14 @@ import 'codemirror/mode/javascript/javascript';
 import 'codemirror/mode/css/css';
 import 'codemirror/mode/htmlmixed/htmlmixed';
 
-var KEY_JS = 'edit-js-value';
-var KEY_HTML = 'edit-html-value';
-var KEY_CSS = 'edit-css-value';
+const KEY_JS = 'edit-js-value';
+const KEY_HTML = 'edit-html-value';
+const KEY_CSS = 'edit-css-value';
 
-var output = new FrameOutput('#output');
-var bin = new Bin(output);
+const output = new FrameOutput('#output');
+const bin = new Bin(output);
 
-var htmlEditorView = new EditorView({
+const htmlEditorView = new EditorView({
 	element: '#edit-html',
 	mode: 'htmlmixed',
 	storageKey: KEY_HTML,
@@ -24,7 +24,7 @@ var htmlEditorView = new EditorView({
 
 bin.registerSource(htmlEditorView.source);
 
-var jsEditorView = new EditorView({
+const jsEditorView = new EditorView({
 	element: '#edit-js',
 	mode: 'javascript',
 	storageKey: KEY_JS,
@@ -32,7 +32,7 @@ var jsEditorView = new EditorView({
 
 bin.registerSource(jsEditorView.source);
 
-var cssEditorView = new EditorView({
+const cssEditorView = new EditorView({
 	element: '#edit-css',
 	mode: 'css',
 	storageKey: KEY_CSS,
@@ -45,11 +45,11 @@ document.addEventListener('dragover', function (e) {
 });
 
 document.addEventListener('drop', function (e) {
-	var files = Array.from(e.dataTransfer.files);
+	const files = Array.from(e.dataTransfer.files);
 	if (files.length) {
 		e.preventDefault();
 		files.forEach(function (file) {
-			var source = new FileSource(file);
+			const source = new FileSource(file);
 			source.injector = new JSInjector();
 			source.transformer = new BabelTransformer();
 			bin.registerSource(source);

@@ -31,7 +31,7 @@ class Bin {
 	}
 
 	handleSourceChange (source) {
-		let requiresSetup = source.injector.teardown(this);
+		const requiresSetup = source.injector.teardown(this);
 		if (requiresSetup) {
 			this.addSource(source);
 		}

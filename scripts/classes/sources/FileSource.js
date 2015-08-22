@@ -19,7 +19,7 @@ class FileSource extends Source {
 
 	getValue () {
 		return new Promise((resolve, reject) => {
-			var reader = new FileReader();
+			const reader = new FileReader();
 			reader.onload = (e) => resolve(e.target.result);
 			reader.onerror = reject;
 			reader.readAsText(this.file);

@@ -3,10 +3,10 @@ import Injector from 'classes/injectors/Injector';
 class HTMLInjector extends Injector {
 	setup (bin, input) {
 		// Create temporary parent container
-		var temp = document.createElement('div');
+		const temp = document.createElement('div');
 		temp.innerHTML = input;
-		var children = temp.childNodes;
-		var frag = document.createDocumentFragment();
+		const children = temp.childNodes;
+		const frag = document.createDocumentFragment();
 		while (children.length) {
 			frag.appendChild(children[0]);
 		}

@@ -10,7 +10,7 @@ class FrameOutput extends Output {
 	}
 
 	set frame (value) {
-		var element = value;
+		let element = value;
 		if (typeof value === 'string') {
 			element = document.querySelector(value);
 		}

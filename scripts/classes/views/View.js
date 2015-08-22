@@ -9,7 +9,7 @@ class View extends Emitter {
 	}
 
 	set element (value) {
-		var element = value;
+		let element = value;
 		if (typeof value === 'string') {
 			element = document.querySelector(value);
 		}
@@ -17,7 +17,7 @@ class View extends Emitter {
 	}
 
 	get element () {
-		var element = this[ELEMENT];
+		let element = this[ELEMENT];
 		if (!element) {
 			element = document.createElement('div');
 			this[ELEMENT] = element;

@@ -3,8 +3,8 @@ import babel from 'babel';
 
 class BabelTransformer extends Transformer {
 	transform (input) {
-		var result = babel.transform(input);
-		var output = result.code;
+		const result = babel.transform(input);
+		const output = result.code;
 		return output;
 	}
 }
