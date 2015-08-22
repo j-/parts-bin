@@ -13,16 +13,11 @@ const KEY_JS = 'edit-js-value';
 const KEY_HTML = 'edit-html-value';
 const KEY_CSS = 'edit-css-value';
 
-const output = new FrameOutput('#output');
-const bin = new Bin(output);
-
 const htmlEditorView = new EditorView({
 	element: '#edit-html',
 	mode: 'htmlmixed',
 	storageKey: KEY_HTML,
 });
-
-bin.registerSource(htmlEditorView.source);
 
 const jsEditorView = new EditorView({
 	element: '#edit-js',
@@ -30,15 +25,22 @@ const jsEditorView = new EditorView({
 	storageKey: KEY_JS,
 });
 
-bin.registerSource(jsEditorView.source);
-
 const cssEditorView = new EditorView({
 	element: '#edit-css',
 	mode: 'css',
 	storageKey: KEY_CSS,
 });
 
-bin.registerSource(cssEditorView.source);
+const output = new FrameOutput('#output');
+
+const bin = new Bin({
+	output,
+	sources: [
+		htmlEditorView.source,
+		jsEditorView.source,
+		cssEditorView.source,
+	],
+});
 
 document.addEventListener('dragover', function (e) {
 	e.preventDefault();

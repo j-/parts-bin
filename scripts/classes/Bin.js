@@ -1,13 +1,16 @@
 import Output from 'classes/outputs/Output';
 
 class Bin {
-	constructor (output) {
-		this.sources = [];
-		this.output = output || new Output();
+	constructor (options = {}) {
+		this.sources = options.sources || [];
+		this.output = options.output || new Output();
+		this.sources.forEach((source) => this.registerSource(source, false));
 	}
 
-	registerSource (source) {
-		this.sources.push(source);
+	registerSource (source, push = true) {
+		if (push) {
+			this.sources.push(source);
+		}
 		source.on('change', () => this.handleSourceChange(source));
 	}
 
