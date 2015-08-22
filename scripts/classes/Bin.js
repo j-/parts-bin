@@ -45,7 +45,7 @@ class Bin {
 
 	resetOutput () {
 		this.output.reset();
-		this.output.ready(() => this.addAllSources());
+		return this.output.ready(() => this.addAllSources());
 	}
 }
 
