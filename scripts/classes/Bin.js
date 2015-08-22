@@ -14,7 +14,7 @@ class Bin {
 		source.on('change', () => this.handleSourceChange(source));
 	}
 
-	unregisterSource (source) {
+	unregisterSource (source, reset = true) {
 		for (let i = 0; i < this.sources.length; i++) {
 			if (this.sources[i] === source) {
 				this.sources.splice(i, 1);
@@ -22,6 +22,9 @@ class Bin {
 				// Only remove the first instance of this source
 				break;
 			}
+		}
+		if (reset) {
+			this.resetOutput();
 		}
 	}
 
