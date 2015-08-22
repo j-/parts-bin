@@ -2,16 +2,13 @@ import Injector from 'classes/injectors/Injector';
 
 class StyleInjector extends Injector {
 	setup (bin, input) {
-		const link = this.link || (this.link = document.createElement('link'));
+		const link = document.createElement('link');
 		link.rel = 'stylesheet';
 		link.href = input;
 		bin.output.head.appendChild(link);
 	}
 
-	teardown (bin) {
-		bin.output.head.removeChild(this.link);
-		return true;
-	}
+	// TODO: Add teardown method
 }
 
 export default StyleInjector;

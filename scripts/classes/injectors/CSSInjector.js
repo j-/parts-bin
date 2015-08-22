@@ -2,15 +2,12 @@ import Injector from 'classes/injectors/Injector';
 
 class CSSInjector extends Injector {
 	setup (bin, input) {
-		const style = this.style || (this.style = document.createElement('style'));
+		const style = document.createElement('style');
 		style.innerHTML = input;
 		bin.output.head.appendChild(style);
 	}
 
-	teardown (bin) {
-		bin.output.head.removeChild(this.style);
-		return true;
-	}
+	// TODO: Add teardown method
 }
 
 export default CSSInjector;
