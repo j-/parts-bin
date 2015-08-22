@@ -7,7 +7,7 @@ class EditorSource extends Source {
 	}
 
 	getValue () {
-		return new Promise((resolve) => resolve(this.editor.getValue()));
+		return Promise.resolve(this.editor.getValue());
 	}
 
 	triggerChange () {
