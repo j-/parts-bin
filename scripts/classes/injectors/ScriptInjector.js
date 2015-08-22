@@ -4,7 +4,7 @@ class ScriptInjector extends Injector {
 	setup (bin, input) {
 		const script = document.createElement('script');
 		script.src = input;
-		this.output.head.appendChild(script);
+		bin.output.head.appendChild(script);
 	}
 }
 
