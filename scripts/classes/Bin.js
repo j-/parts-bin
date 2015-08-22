@@ -13,7 +13,7 @@ class Bin {
 
 	unregisterSource (source) {
 		for (let i = 0; i < this.sources.length; i++) {
-			if (sources[i] === source) {
+			if (this.sources[i] === source) {
 				this.sources.splice(i, 1);
 				source.off('change', this.resetOutput);
 				// Only remove the first instance of this source
