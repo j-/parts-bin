@@ -33,7 +33,7 @@ class Bin {
 	}
 
 	addSource (source) {
-		source.addTo(this);
+		return Promise.resolve(source.addTo(this));
 	}
 
 	handleSourceChange (source) {
