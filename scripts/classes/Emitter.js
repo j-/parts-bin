@@ -14,10 +14,10 @@ class Emitter {
 	}
 
 	once (event, listener) {
-		function callback (...args) {
+		const callback = (...args) => {
 			this.off(event, callback);
 			listener.call(this, ...args);
-		}
+		};
 		callback.listener = listener;
 		this.on(event, callback);
 		return this;
