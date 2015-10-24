@@ -1,5 +1,6 @@
+/* global babel */
+
 import Transformer from 'classes/transformers/Transformer';
-import babel from 'babel';
 
 class BabelTransformer extends Transformer {
 	transform (input) {
